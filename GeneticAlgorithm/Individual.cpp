@@ -34,9 +34,17 @@ int Individual::calFitness(int maxWeight, int weights[], int values[])
 		return value;
 }
 
-int Individual::mutate()
+std::string Individual::mutate(double mutProb)
 {
-	return 0;
+	for (int i = 0; i < genotype.length(); i++) {
+		double r = ((double)rand() / (RAND_MAX)) + 1;
+		if (r < mutProb)
+			if (genotype[i] == '0')
+				genotype[i] = '1';
+			else
+				genotype[i] = '0';
+	}
+	return genotype;
 }
 
 

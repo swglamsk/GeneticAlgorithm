@@ -9,8 +9,7 @@ public:
 	Individual();
 	Individual(std::string Gen);
 	int calFitness(int, int weights[], int values[]);
-	int mutate();
-	std::string GetGenotype();
+	std::string mutate(double mutProb);
 	~Individual();
 	std::pair<Individual, Individual> cross(Individual parent2);
 private:
