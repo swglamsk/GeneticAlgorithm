@@ -12,6 +12,18 @@ Individual::Individual(std::string Gen)
 
 }
 
+Individual::Individual(int size)
+{
+	genotype = "";
+	for (int i = 0; i < size; i++)
+	{
+		if (rand() % 2 == 1)
+			genotype += '1';
+		else
+			genotype += '0';
+	}
+}
+
 
 
 int Individual::calFitness(int maxWeight, int weights[], int values[])
@@ -51,6 +63,11 @@ std::string Individual::mutate(double mutProb)
 
 Individual::~Individual()
 {
+}
+
+std::string Individual::getGenotype()
+{
+	return genotype;
 }
 
 std::pair<Individual, Individual> Individual::cross(Individual  parent2)
