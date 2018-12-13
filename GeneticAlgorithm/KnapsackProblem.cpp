@@ -11,15 +11,16 @@ KnapsackProblem::KnapsackProblem(std::string wFile, std::string vFile, int weigh
 	max_weight = weight;
 	std::fstream fileW(wFile, std::ios_base::in);
 	std::fstream fileV(vFile, std::ios_base::in);
+	length = number;
 
-	weights = new int[number];
-	values = new int[number];
+	weights = new int[number-1];
+	values = new int[number-1];
 
 	for (int i = 0; i < number; i++)
 	{
 		fileW >> weights[i];
 		fileV >> values[i];
-		std::cout << i << ". Waga: " << weights[i] << " Wartosc: " << values[i] << std::endl;
+		std::cout << i+1 << ". Waga: " << weights[i] << " Wartosc: " << values[i] << std::endl;
 	}
 
 
@@ -42,4 +43,24 @@ void KnapsackProblem::convertAnswer(Individual& individual)
 			std::cout << weights[i] << " " << values[i] << std::endl;
 		}
 	}
+}
+
+int KnapsackProblem::getLength()
+{
+	return length;
+}
+
+int KnapsackProblem::getMaxWeight()
+{
+	return max_weight;
+}
+
+int * KnapsackProblem::getWeights()
+{
+	return weights;
+}
+
+int * KnapsackProblem::getValues()
+{
+	return values;
 }

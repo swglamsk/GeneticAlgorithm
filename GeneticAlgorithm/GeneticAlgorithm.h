@@ -6,11 +6,13 @@ class GeneticAlgorithm
 public:
 	GeneticAlgorithm();
 	GeneticAlgorithm(int PopSize, double CrossProb, double MutProb);
-	void run(int iteration);
+	std::string run(int iteration);
 	~GeneticAlgorithm();
 private:
 	int PopSize;
 	double CrossProb;
 	double MutProb;
+	Individual* population;
+	KnapsackProblem* knapsack;
 };
 

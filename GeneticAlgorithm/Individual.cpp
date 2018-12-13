@@ -70,7 +70,7 @@ std::string Individual::getGenotype()
 	return genotype;
 }
 
-std::pair<Individual, Individual> Individual::cross(Individual  parent2)
+std::pair<Individual, Individual> Individual::cross(Individual&  parent2)
 {
 	int length = genotype.length();
 	std::string parent1Genotype = genotype;

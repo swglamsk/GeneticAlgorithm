@@ -48,4 +48,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="value_data.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="weight_data.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
