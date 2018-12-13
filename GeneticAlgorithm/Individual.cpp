@@ -50,11 +50,12 @@ std::string Individual::mutate(double mutProb)
 {
 	for (int i = 0; i < genotype.length(); i++) {
 		double r = ((double)rand() / (RAND_MAX)) + 1;
-		if (r < mutProb)
-			if (genotype[i] == '0')
-				genotype[i] = '1';
-			else
-				genotype[i] = '0';
+		if (r < mutProb) {
+		if (genotype[i] == '0')
+			genotype[i] = '1';
+		else
+			genotype[i] = '0';
+	}
 	}
 	return genotype;
 }
@@ -83,13 +84,13 @@ std::pair<Individual, Individual> Individual::cross(Individual&  parent2)
 	int i = 0;
 	for (; i < cutPosition; i++)
 	{
-		child1Genotype[i] = parent1Genotype[i];
-		child2Genotype[i] = parent2Genotype[i];
+		child1Genotype += parent1Genotype[i];
+		child2Genotype += parent2Genotype[i];
 	}
 	for (; i < length; i++)
 	{
-		child1Genotype[i] = parent2Genotype[i];
-		child2Genotype[i] = parent1Genotype[i];
+		child1Genotype += parent2Genotype[i];
+		child2Genotype += parent1Genotype[i];
 	}
 
 	Individual child1(child1Genotype);

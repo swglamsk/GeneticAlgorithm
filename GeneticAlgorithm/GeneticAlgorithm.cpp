@@ -16,7 +16,7 @@ GeneticAlgorithm::GeneticAlgorithm(int PopSize, double CrossProb, double MutProb
 
 std::string GeneticAlgorithm::run(int iteration)
 {
-	knapsack = new KnapsackProblem("weight_data.txt", "value_data.txt", 26, 5);
+	knapsack = new KnapsackProblem("weight_data.txt", "value_data.txt", 104, 8);
 	std::string bestResult = "";
 	int bestFitness = 0;
 	//pierwsza populacja zrobiona z losowych liczb
@@ -86,13 +86,13 @@ std::string GeneticAlgorithm::run(int iteration)
 			}
 			
 		}
-		
+		population = nextPopulation;
 		//mutacja
 		for (int j = 0; j < PopSize; j++)
 		{
 			population[j].mutate(MutProb);
 		}
-		population = nextPopulation;
+		
 	}
 	return bestResult;
 }

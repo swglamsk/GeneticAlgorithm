@@ -13,8 +13,8 @@ KnapsackProblem::KnapsackProblem(std::string wFile, std::string vFile, int weigh
 	std::fstream fileV(vFile, std::ios_base::in);
 	length = number;
 
-	weights = new int[number-1];
-	values = new int[number-1];
+	weights = new int[number];
+	values = new int[number];
 
 	for (int i = 0; i < number; i++)
 	{
