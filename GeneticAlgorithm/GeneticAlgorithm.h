@@ -13,6 +13,6 @@ private:
 	double CrossProb;
 	double MutProb;
 	Individual* population;
-	KnapsackProblem* knapsack;
+	KnapsackProblem* knapsack = new KnapsackProblem("weight_data.txt", "value_data.txt", 15, 7);
 };
 

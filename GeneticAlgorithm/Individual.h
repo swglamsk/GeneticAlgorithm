@@ -12,7 +12,7 @@ public:
 	std::string mutate(double mutProb);
 	~Individual();
 	std::string getGenotype();
-	std::pair<Individual, Individual> cross(Individual& parent2);
+	void cross(Individual& parent2);
 private:
 	std::string genotype;
 };

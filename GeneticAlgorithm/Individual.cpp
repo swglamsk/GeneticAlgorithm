@@ -49,7 +49,7 @@ int Individual::calFitness(int maxWeight, int weights[], int values[])
 std::string Individual::mutate(double mutProb)
 {
 	for (int i = 0; i < genotype.length(); i++) {
-		double r = ((double)rand() / (RAND_MAX)) + 1;
+		double r = (rand() % 100) / 100;
 		if (r < mutProb) {
 		if (genotype[i] == '0')
 			genotype[i] = '1';
@@ -64,6 +64,7 @@ std::string Individual::mutate(double mutProb)
 
 Individual::~Individual()
 {
+
 }
 
 std::string Individual::getGenotype()
@@ -71,7 +72,7 @@ std::string Individual::getGenotype()
 	return genotype;
 }
 
-std::pair<Individual, Individual> Individual::cross(Individual&  parent2)
+void Individual::cross(Individual&  parent2)
 {
 	int length = genotype.length();
 	std::string parent1Genotype = genotype;
@@ -92,13 +93,8 @@ std::pair<Individual, Individual> Individual::cross(Individual&  parent2)
 		child1Genotype += parent2Genotype[i];
 		child2Genotype += parent1Genotype[i];
 	}
-
-	Individual child1(child1Genotype);
-	Individual child2(child2Genotype);
-
-	std::pair<Individual, Individual> Children = std::make_pair(child1, child2);
-
-	return Children;
-
+	
+	parent2.genotype = child2Genotype;
+	this->genotype = child1Genotype;
 
 }

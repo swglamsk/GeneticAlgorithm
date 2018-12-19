@@ -16,7 +16,7 @@ GeneticAlgorithm::GeneticAlgorithm(int PopSize, double CrossProb, double MutProb
 
 std::string GeneticAlgorithm::run(int iteration)
 {
-	knapsack = new KnapsackProblem("weight_data.txt", "value_data.txt", 104, 8);
+	
 	std::string bestResult = "";
 	int bestFitness = 0;
 	//pierwsza populacja zrobiona z losowych liczb
@@ -25,7 +25,7 @@ std::string GeneticAlgorithm::run(int iteration)
 		population[i] = Individual(knapsack->getLength());
 	}
 
-	//g³owna petla wykonujaca sie iles razy
+	//g³owna petla
 	for (int i = 0; i < iteration; i++)
 	{
 		for (int j = 0; j < PopSize; j++)
@@ -37,7 +37,6 @@ std::string GeneticAlgorithm::run(int iteration)
 				bestResult = population[j].getGenotype();
 			}
 		}
-		Individual* nextPopulation = new Individual[PopSize];
 		//crossing
 		for (int j = 0; j < PopSize; j+=2)
 		{
@@ -67,26 +66,18 @@ std::string GeneticAlgorithm::run(int iteration)
 
 			if (firstFitnessB > secondFitnessb) indexB = firstB;
 			else indexB = secondB;
-			Individual parent1 = population[indexA];
-			Individual parent2 = population[indexB];
+			Individual* childA = &(population[indexA]);
+			Individual* childB = &(population[indexB]);
 
-			double r = ((double)rand() / (RAND_MAX)) + 1;
+		double r = (rand() % 100) /100;
 			if (r < CrossProb) 
 			{
-				std::pair<Individual, Individual> newpair = parent1.cross(parent2);
-				nextPopulation[j] = newpair.first;
-				nextPopulation[j + 1] = newpair.second;
-
+				childA->cross(*childB);
 			}
 
-			else
-			{
-				nextPopulation[j] = parent1;
-				nextPopulation[j + 1] = parent2;
-			}
 			
 		}
-		population = nextPopulation;
+
 		//mutacja
 		for (int j = 0; j < PopSize; j++)
 		{
@@ -94,6 +85,7 @@ std::string GeneticAlgorithm::run(int iteration)
 		}
 		
 	}
+	std::cout << bestFitness << std::endl;
 	return bestResult;
 }
 
